@@ -1,0 +1,56 @@
+# 📌 문제의 조건
+* 첫 번째 인자인 배열을 두 번째 인자인 배열에 맞춰 출력
+
+
+## 제한사항 🤔
+
+* array의 길이는 1 이상 100 이하입니다.
+* array의 각 원소는 1 이상 100 이하입니다.
+* commands의 길이는 1 이상 50 이하입니다.
+* commands의 각 원소는 길이가 3입니다.
+
+
+# 📌 풀이
+## 의사 코드 👨‍💻
+
+1. array는 얕은 복사시킨다.
+전개구문, 슬라이스, 컨켓
+
+2. 0번 인덱스 부터 1번 인덱스까지 자른다
+정렬시키고
+3. 2번 인덱스의 요소를 뽑는다.
+
+4. commands 배열을 반복문을 돌린다.
+
+## 첫 풀이 👨‍💻
+
+```jsx
+function solution(array, commands) {
+    const answer = [];
+    for(let i of commands){
+        answer.push(array.slice(i[0]-1, i[1]).sort()[i[2]-1])
+    }
+    
+    return answer;
+}
+```
+
+## 추가학습 후 풀이 👨‍💻
+
+```jsx
+function solution(array, commands) {
+    return commands.map((e)=>{
+        return array.slice(e[0]-1,e[1]).sort((a,b)=> a-b)[e[2]-1]
+    })
+}
+```
+
+# 📌 회고 
+반복문을 사용한데다 배열을 반환하는 함수이니 맵핑하기 딱 좋은 문제라고 생각해 적용해봤다.
+처음에 맵핑할때 sort 메소드에 함수를 따로 사용하지 않고 진행해서 오류가 났었는데
+생각해보니 sort를 조건없이 사용하면 1,2,3,4,10이 1,10,2,3,4 이런 식으로 유니코드 포인트를 따른다.
+
+그래서 수정하고, 해결되었다.
+
+# 📌 문제 출처
+출처: 프로그래머스 코딩 테스트 연습, https://programmers.co.kr/learn/challenges# 
